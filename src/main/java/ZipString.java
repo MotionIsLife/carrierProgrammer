@@ -31,7 +31,13 @@ public class ZipString {
         int compressedLength = 0;
         int countConsecutive = 0;
         for (int i = 0; i < str.length(); i++) {
-
+            countConsecutive++;
+            /*если следующий символ отличавется от текущего, увеличить длину*/
+            if(i + 1 >= str.length() || str.charAt(i) != str.charAt(i + 1)) {
+                compressedLength += 1 + String.valueOf(countConsecutive).length();
+                countConsecutive = 0;
+            }
         }
+        return compressedLength;
     }
 }
